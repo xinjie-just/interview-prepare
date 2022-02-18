@@ -33,6 +33,9 @@ function rotate1(arr, k) {
         console.log("k 必须是一个数字");
         return;
     }
+    // 时间复杂度 O(1)，空间复杂度 O(n)
+    // 从计算量看。是截取和合并操作，3步，时间复杂度 O(1)
+    // 从内存空间占用量看，不关系 k 的大小，关系 arr 的长度，不同的 arr 分别做三次操作，所以空间复杂度是 O(n)
     const step = Math.abs(k % len); // 考虑 k 值大于数组长度情况
     const start = arr.slice(-step);
     const end = arr.slice(0, len - step);
@@ -55,6 +58,13 @@ function rotate2(arr, k) {
         console.log("k 必须是一个数字");
         return;
     }
+    // 时间复杂度 O(n^2)，空间复杂度 O(1)
+    // 从计算量来看，循环一次是 O(n)，每一次 unshift() 操作是 O(n)，所以是 O(n^2)
+    /*
+     * pop() 和 push() 只是从数组末尾删元素和添加元素，不改变原来元素的位置。
+     * shift() 和 unshift() 是在数组第一个位置删除和添加元素，原来的元素全部都要移位。移位的多少和数组长度有* 关，这里是 O(n) 的复杂度，循环又是 O(n) 复杂度，所以是 O(n^2) 复杂度
+     */
+
     const step = Math.abs(k % len); // 考虑 k 值大于数组长度情况
     for (let i = 0; i < step; i++) {
         arr.unshift(arr.pop());
@@ -63,3 +73,29 @@ function rotate2(arr, k) {
 }
 
 ```
+
+```javascript
+let arr1 = [];
+for (let i = 0; i < 20 * 10000; i++) {
+    arr1.push(i);
+}
+console.time("rotate1");
+rotate1(arr1, 100000);  // 2.072021484375 ms
+console.timeEnd("rotate1");
+```
+
+```javascript
+let arr2 = [];
+for (let i = 0; i < 20 * 10000; i++) {
+    arr2.push(i);
+}
+console.time("rotate2");
+rotate2(arr2, 100000);  // 2061.335205078125 ms， 比方法 1 时间相差了 1000 倍，显然方法 1 更优
+console.timeEnd("rotate2");
+```
+
+**数组是一个有序结构，`unshift()`、`shift()`、`splice()` 操作都很慢**
+
+**`slice()` 操作很快，因为原数组没有改变**
+
+**优先选择时间复杂度更优的，如果时间复杂度一样，选择空间复杂度更优的。**
