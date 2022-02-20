@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bounce</title>
+  </head>
+  <body>
+    <p>bounce</p>
+    <div>
+      搜索：
+      <input type="text" id="search" />
+    </div>
+    <script>
+      function bounce(fn, delay = 200) {
+        let timer = 0;
+        return function () {
+          if (timer) {
+            clearTimeout(timer);
+          }
+
+          timer = setTimeout(() => {
+            fn.apply(this, arguments);
+            timer = 0;
+          }, delay);
+        };
+      }
+
+      let inputDom = document.getElementById("search");
+      inputDom.addEventListener(
+        "keyup",
+        bounce((e) => {
+          console.log("输入的值：", inputDom.value);
+        }, 200)
+      );
+    </script>
+  </body>
+</html>
