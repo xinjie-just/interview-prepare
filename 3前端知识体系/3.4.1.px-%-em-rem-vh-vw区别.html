@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>px-%-em-rem-vh-vw区别</title>
+    <style>
+      .parent1 {
+        width: 200px;
+        height: 100px;
+        background-color: #f44;
+      }
+      .child1 {
+        width: 50%; /* 父元素宽度的 50%，100px */
+        height: 50%; /* 父元素高度的 50%，50px */
+        background-color: #044;
+      }
+      .parent2 {
+        font-size: 20px;
+      }
+      .child21 {
+        font-size: 40px;
+        text-indent: 2em; /* 80px，自身 font-size 的 2 倍 */
+      }
+      .child22 {
+        text-indent: 2em; /* 40px，自身 font-size 继承自父元素 20px，为自身 font-size 的 2 倍 */
+      }
+      @media (max-width: 1000px) {
+        html {
+          font-size: 30px;
+        }
+      }
+      @media (min-width: 1001px) {
+        html {
+          font-size: 20px;
+        }
+      }
+      .element3 {
+        font-size: 2rem; /* 当屏幕宽度小于等于 1000px 时，字号是 60px，否则字号是 40px */
+      }
+      .element4 {
+        width: 20vw;
+        height: 30vh;
+        /* 当视窗为宽度 710px，高度 710px 时，本元素宽度 142px，高度 213px */
+      }
+    </style>
+  </head>
+  <body>
+    <div>% 的运用</div>
+    <div class="parent1">
+      <div class="child1">子元素1</div>
+    </div>
+
+    <div>em 的运用</div>
+    <div class="parent2">
+      <div class="child21">子元素21</div>
+      <div class="child22">子元素22</div>
+    </div>
+
+    <div>rem 的运用</div>
+    <div class="element3">element3</div>
+
+    <div>vh 的运用</div>
+    <div class="element4">element4</div>
+  </body>
+</html>
