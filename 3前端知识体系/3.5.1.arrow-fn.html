@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>箭头函数</title>
+  </head>
+  <body>
+    <h1 id="title">箭头函数</h1>
+    <script>
+      //   // 1. 没有 arguments
+      //   //   const a = () => {
+      //   //     console.log("arguments", arguments); // 引用错误，ReferenceError: arguments is not defined
+      //   //   };
+      //   function a() {
+      //     console.log("arguments", arguments); // 引用错误，ReferenceError: arguments is not defined
+      //   }
+      //   a(100, 200);
+
+      // 2. 不能通过 call、apply、bind 来改变 this 值
+      //   //   const b = () => {
+      //   //     console.log(this);
+      //   //   };
+      //   function b() {
+      //     console.log(this);
+      //   }
+      //   //   b(); // Window 对象
+      //   b.call({ a: 100 }); // 箭头函数是 Window 对象，普通函数是 {a: 100}
+
+      // 3. 对象方法不能使用箭头函数，会获取不到 this 值
+      //   //   const c = {
+      //   //     name: "lixinjie",
+      //   //     getName: function () {
+      //   //       return this.name;
+      //   //     },
+      //   //   };
+      //   const c = {
+      //     name: "lixinjie",
+      //     getName: () => {
+      //       return this.name;
+      //     },
+      //   };
+      //   console.log(c.getName()); // 普通函数可以获取到 lixinjie，箭头函数不行
+
+      // 4. 原型方法不能使用箭头函数，会获取不到 this 值
+      //   const d = {
+      //     name: "lixinjie",
+      //   };
+      //   //   d.__proto__.getName = () => {
+      //   //     return this.name;
+      //   //   };
+      //   d.__proto__.getName = function () {
+      //     return this.name;
+      //   };
+      //   console.log(d.getName()); // 使用箭头函数，不会返回任何东西，普通函数可以返回 lixinjie
+
+      // 5. 构造函数不能使用箭头函数，会获取不到 this 值
+      //   //   const Foo = (name, age) => {
+      //   //     this.name = name;
+      //   //     this.age = age;
+      //   //   };
+      //   const Foo = function (name, age) {
+      //     this.name = name;
+      //     this.age = age;
+      //   };
+      //   // 当使用箭头函数时，TypeError: Foo is not a constructor
+      //   const f = new Foo("lixinjie", 24);
+      //   console.log(f.name); // 使用普通函数时，可以返回 lixinjie
+
+      // 6. 动态上下文的回调函数
+      //   // 使用箭头函数 this 获取不到上下文
+      //   const t = document.getElementById("title");
+      //   //   t.addEventListener("click", () => {
+      //   //     this.innerHTML = "click";
+      //   // this === Window
+      //   //   });
+      //   // 使用普通函数，可以获取到上下文，点击 “箭头函数” 这个标题时，将会变成 "click"
+      //   t.addEventListener("click", function () {
+      //     this.innerHTML = "click";
+      //   });
+
+      // `Vue` 生命周期和 `method` 使用箭头函数，函数里面获取不到想要的 `this`, 因为生命周期函数和 `method` 方法在一个对象中，`Vue` 组件本质上是对象，里面的的方法是对象方法。
+      // `React` 可以，`React` 组件本质上是 `class`
+      class Foo {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+      }
+      const f = new Foo("lixinjie", 24);
+      console.log(f.name);
+    </script>
+  </body>
+</html>
