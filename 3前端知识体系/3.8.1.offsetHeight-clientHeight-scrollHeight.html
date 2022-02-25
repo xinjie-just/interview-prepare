@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>offsetHeight-clientOffset-scrollHeight</title>
+    <style>
+      .parent-container {
+        width: 300px;
+        height: 200px;
+        padding: 20px;
+        border: 5px solid #ddd;
+        margin: 10px;
+        box-sizing: border-box;
+        overflow: scroll;
+      }
+      .child-container {
+        width: 600px;
+        height: 500px;
+        background-color: #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent-container" id="parentContainer">
+      <div class="child-container" id="childContainer">这个是子元素</div>
+    </div>
+
+    <script>
+      // offsetHeight 是 padding + content + border 的值
+      // clientHeight 是 padding + content 的值
+      // scrollHeight 是 padding + 实际内容的高度
+      const parentContainer = document.getElementById("parentContainer");
+      // box-sizing: border-box; 时，offsetHeight 是 200。box-sizing: content-box; 时 offsetHeight 是 250
+      console.log("offsetHeight", parentContainer.offsetHeight);
+      // box-sizing: border-box; clientHeight 是 190。box-sizing: content-box; 时 clientHeight 是 240
+      console.log("clientHeight", parentContainer.clientHeight);
+      // box-sizing: border-box; scrollHeight 是 190。box-sizing: content-box; 时 scrollHeight 是 240
+      // 当包含 #childContainer 子元素时，padding + 实际内容高度 = 40 + 500 = 540
+      console.log("scrollHeight", parentContainer.scrollHeight);
+      // 当包含 #childContainer 子元素时，padding + 实际内容宽度 = 40 + 600 = 640
+      console.log("scrollWidth", parentContainer.scrollWidth);
+    </script>
+  </body>
+</html>

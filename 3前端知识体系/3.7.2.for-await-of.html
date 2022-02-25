@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>for-await-of</title>
+  </head>
+  <body>
+    <h1>for-await-of</h1>
+    <script>
+      function p(val) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(val);
+          }, 1000);
+        });
+      }
+      (async function () {
+        const res1 = await p(100);
+        // console.log(res1);
+        const res2 = await p(200);
+        // console.log(res2);
+        const res3 = await p(300);
+        // console.log(res3);
+
+        const list = [res1, res2, res3];
+        // Promise.all(list).then((res) => console.log(res)); // [100, 200, 300]
+
+        for await (let res of list) {
+          console.log(res); // 遍历一个 promise
+        }
+      })();
+    </script>
+  </body>
+</html>

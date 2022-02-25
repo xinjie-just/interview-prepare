@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTMLCollection 和 NodeList的区别</title>
+  </head>
+  <body>
+    <div class="div">
+      <p>p</p>
+      <span>span</span>
+      <em>em</em>
+      <strong>strong</strong>
+      <!-- 一些聪明的注释 -->
+    </div>
+    <script>
+      const div = document.getElementsByClassName("div")[0];
+      console.log(typeof div); // object
+      console.log(div instanceof HTMLDivElement); // true
+      console.log(div instanceof Node); // true  元素也是其中一种节点
+
+      const divs = document.getElementsByClassName("div"); // 获取到 className 为 div 的全部元素，是一个元素集合
+      console.log(divs instanceof HTMLCollection); // true
+      console.log(divs instanceof NodeList); // false
+
+      console.log(div.childNodes); // NodeList(11) [text, p, text, span, text, em, text, strong, text, comment, text]
+      console.log(div.children); // HTMLCollection(4) [p, span, em, strong]， children 属性只包括元素
+    </script>
+  </body>
+</html>
