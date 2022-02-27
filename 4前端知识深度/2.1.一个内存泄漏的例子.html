@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>内存泄漏的例子</title>
+  </head>
+  <body>
+    <h1>模拟内存泄漏</h1>
+    <p>执行一些操作 <button id="btn">开始</button></p>
+    <script>
+      let arr = [];
+      for (let i = 0; i < 10 * 10000; i++) {
+        arr.push(i);
+      }
+      let n = 1;
+      const btn = document.getElementById("btn");
+      btn.addEventListener("click", () => {
+        const id = setInterval(() => {
+          if (n < 100) {
+            for (let j = 0; j < 20; j++) {
+              // 产生一个很大的数据，且赋值到 window 对象上，增加内存占用
+              window.arr[n * j + j] = JSON.stringify(arr);
+            }
+            n++;
+          } else {
+            clearInterval(id);
+            return;
+          }
+        }, 200);
+      });
+    </script>
+  </body>
+</html>
