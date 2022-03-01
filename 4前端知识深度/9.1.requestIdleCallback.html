@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>requestIdleCallback</title>
+    <style>
+      .container {
+        width: 100px;
+        height: 100px;
+        border: 3px solid #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>requestIdleCallback</h1>
+    <button id="btn">开始执行</button>
+    <div id="container" class="container"></div>
+
+    <script>
+      const container = document.getElementById("container");
+      document.getElementById("btn").addEventListener("click", () => {
+        let curWidth = 100;
+        const maxWidth = 400;
+        function fn1() {
+          curWidth += 4;
+          container.style.width = `${curWidth}px`;
+          if (curWidth <= maxWidth) {
+            // requestIdleCallback(fn1); // requestIdleCallback 参数接收一个回调函数
+            requestAnimationFrame(fn1); // requestAnimationFrame 参数接收一个回调函数
+          }
+        }
+        fn1();
+      });
+
+      window.onload = () => {
+        console.info("start");
+        setTimeout(() => {
+          console.info("setTimeout");
+        });
+        requestAnimationFrame(() => {
+          console.info("requestAnimationFrame");
+        });
+        requestIdleCallback(() => {
+          console.info("requestIdleCallback");
+        });
+        console.info("end");
+
+        // start
+        // end
+        // setTimeout
+        // requestAnimationFrame
+        // requestIdleCallback
+        // 由此可见这两个是宏任务，比 setTimeout 还要晚一步执行，requestAnimationFrame在前（即便调换了顺序都是这样）因为它是高优先级
+      };
+    </script>
+  </body>
+</html>
