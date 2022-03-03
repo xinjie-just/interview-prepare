@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>h5页面1px边框解决方法</title>
+    <style>
+      .border {
+        position: relative;
+      }
+      .border::after {
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        content: "";
+        top: 0;
+        left: 0;
+        background-color: #000;
+        transform: scaleY(0.5);
+        border-radius: 5px;
+        /*border: 1px solid #d9d9d9;*/
+        box-shadow: 0 0 0 0.5px #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="border"></div>
+  </body>
+</html>
