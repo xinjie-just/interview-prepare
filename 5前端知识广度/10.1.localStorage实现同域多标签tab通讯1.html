@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>localStorage1</title>
+  </head>
+  <body>
+    <h1>localstorage1</h1>
+    <button type="button" id="btn">修改信息</button>
+    <script>
+      const btn = document.getElementById("btn");
+      btn.addEventListener("click", () => {
+        const info = {
+          id: 100,
+          name: "名称" + Date.now(),
+        };
+        localStorage.setItem("info", JSON.stringify(info));
+        // localStorage 跨域不共享
+      });
+    </script>
+  </body>
+</html>
