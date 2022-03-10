@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>index</title>
+    <style>
+      button {
+        display: block;
+        margin-bottom: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>父页面</h1>
+    <button id="btn">发送消息</button>
+    <iframe
+      id="iframe1"
+      src="./10.2.网页和iframe之间的通讯-child.html"
+      width="500"
+      height="300"
+    ></iframe>
+    <script>
+      const btn = document.getElementById("btn");
+      btn.addEventListener("click", () => {
+        console.info("index clicked");
+        window.iframe1.contentWindow.postMessage("我是父页面发来的消息", "*");
+      });
+      window.onmessage = (event) => {
+        console.info("我是父页面，我收到消息了");
+        console.info("来源：", event.origin);
+        console.info("数据：", event.data);
+      };
+    </script>
+  </body>
+</html>

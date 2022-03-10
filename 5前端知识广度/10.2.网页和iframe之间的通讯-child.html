@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>child</title>
+  </head>
+  <body>
+    <h1>iframe子页面</h1>
+    <button id="btn">发送消息</button>
+    <script>
+      const btn = document.getElementById("btn");
+      btn.addEventListener("click", () => {
+        console.info("child clicked");
+        window.parent.postMessage("我是iframe子页面发来的消息", "*");
+      });
+      window.onmessage = (event) => {
+        console.info("我是iframe子页面，我收到消息了");
+        console.info("来源：", event.origin);
+        console.info("数据：", event.data);
+      };
+    </script>
+  </body>
+</html>
