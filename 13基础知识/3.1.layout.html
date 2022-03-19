@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>layout</title>
+    <style>
+      /* .div1 {
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        border: 1px solid #000;
+        margin: 10px;
+      } */
+      p {
+        font-size: 16px;
+        line-height: 1;
+        margin-top: -10px;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="div1">计算 offsetWidth</div> -->
+    <div class="div2">垂直方向 margin 重叠</div>
+    <!-- 在垂直方向上，margin 会重叠，如果都为正数取最大那个，如果都为负数取绝对值最大的负数，如果一正一负者正负相加。且空标签的高度也会不计算。 -->
+    <p>p1</p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p>p2</p>
+    <script>
+      // offsetWidth = （内容宽 + padding-left + padding-right + border-left-width + border-right-width）
+      //   const div1 = document.getElementsByClassName("div1")[0];
+      //   console.log(div1.offsetWidth); // 122
+    </script>
+  </body>
+</html>
