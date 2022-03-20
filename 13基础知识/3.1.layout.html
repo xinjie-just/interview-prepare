@@ -13,23 +13,94 @@
         border: 1px solid #000;
         margin: 10px;
       } */
-      p {
+      /* p {
         font-size: 16px;
         line-height: 1;
         margin-top: -10px;
         margin-bottom: 15px;
+      } */
+      /* .header {
+        background-color: #dadada;
+        color: #000;
+        width: 100%;
+      }
+      .main::after {
+        display: table;
+        content: "";
+        clear: both;
+      }
+      .main .column {
+        float: left;
+      }
+      .footer {
+        background-color: #dadada;
+        color: #000;
+        width: 100%;
+      }
+      #left {
+        background-color: #f00;
+        color: #fff;
+        width: 100px;
+      }
+      #center {
+        background-color: #0f0;
+        color: #fff;
+        width: calc(100% - 100px - 150px);
+      }
+      #right {
+        background-color: #00f;
+        color: #000;
+        width: 150px;
+      } */
+      .container {
+        padding: 10px;
+        border: 1px solid #999;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        width: 100px;
+        height: 100px;
+      }
+      .container .item {
+        width: 20px;
+        height: 20px;
+        background-color: #999;
+        border-radius: 50%;
+      }
+      .item:nth-of-type(2) {
+        align-self: center;
+      }
+      .item:nth-of-type(3) {
+        align-self: flex-end;
       }
     </style>
   </head>
   <body>
     <!-- <div class="div1">计算 offsetWidth</div> -->
-    <div class="div2">垂直方向 margin 重叠</div>
+
+    <!-- <div class="div2">垂直方向 margin 重叠</div> -->
     <!-- 在垂直方向上，margin 会重叠，如果都为正数取最大那个，如果都为负数取绝对值最大的负数，如果一正一负者正负相加。且空标签的高度也会不计算。 -->
-    <p>p1</p>
+    <!-- <p>p1</p>
     <p></p>
     <p></p>
     <p></p>
-    <p>p2</p>
+    <p>p2</p> -->
+
+    <!-- <header class="header">header</header>
+    <main class="main">
+      <div id="left" class="column">left</div>
+      <div id="center" class="column">center</div>
+      <div id="right" class="column">right</div>
+    </main>
+    <footer class="footer">footer</footer> -->
+
+    <h2>flex布局实现3点骰子</h2>
+    <div class="container">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+
     <script>
       // offsetWidth = （内容宽 + padding-left + padding-right + border-left-width + border-right-width）
       //   const div1 = document.getElementsByClassName("div1")[0];

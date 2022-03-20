@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>子元素有line-height情况</title>
+    <style>
+      body {
+        font-size: 20px;
+        line-height: 2em;
+      }
+      .paragraph {
+        font-size: 30px;
+        /*如果子元素有 font-size 和 line-height 属性，则直接计算得出自己的行高，和父元素的行高不相关*/
+        line-height: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="paragraph">段落</p>
+  </body>
+</html>
