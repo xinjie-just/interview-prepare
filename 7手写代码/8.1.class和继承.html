@@ -34,6 +34,13 @@
       lisi.eat();
       lisi.getNumber();
       console.log(lisi.age);
+      console.log("lisi.hasOwnProperty('name')", lisi.hasOwnProperty("name")); // true
+      console.log("lisi.hasOwnProperty('eat')", lisi.hasOwnProperty("eat")); // false
+      console.log("eat in lisi", "eat" in lisi); // true, in 操作符包含了对象原型上的属性 / 方法
+      console.log(
+        "Student.prototype.__proto__ === People.prototype",
+        Student.prototype.__proto__ === People.prototype
+      ); // true
     </script>
   </body>
 </html>

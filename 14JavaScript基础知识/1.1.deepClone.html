@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>深拷贝</title>
+  </head>
+  <body>
+    <h1>深拷贝</h1>
+    <script>
+      function deepClone(obj = {}) {
+        if (typeof obj !== "object" || typeof obj === "null") {
+          return obj;
+        }
+        let res;
+        if (Array.isArray(obj)) {
+          res = [];
+        } else {
+          res = {};
+        }
+        for (let key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            res[key] = deepClone(obj[key]);
+          }
+        }
+        return res;
+      }
+      let obj1 = {
+        age: 20,
+        name: "lisi",
+        address: {
+          city: "beijing",
+          area: "fengtai",
+        },
+        hobby: ["running", "dancing"],
+      };
+      const obj2 = deepClone(obj1);
+      obj2.address.city = "shanghai";
+      obj2.hobby[0] = "swimming";
+      console.log(obj2.address.city); // 'shanghai'
+      console.log(obj1.address.city); // 'beijing'
+      console.log(obj2.hobby[0]); // 'swimming'
+      console.log(obj1.hobby[0]); // 'running'
+    </script>
+  </body>
+</html>
