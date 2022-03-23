@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>使用promise加载图片</title>
+  </head>
+  <body>
+    <script>
+      function loadImage(src) {
+        return new Promise((resolve, reject) => {
+          const img = document.createElement("img");
+          img.alt = "promise方式加载的图片";
+          img.src = src;
+          img.onload = () => {
+            resolve(img);
+          };
+          img.onerror = () => {
+            const err = new Error("图片加载失败！");
+            reject(err);
+          };
+        });
+      }
+      const url1 =
+        "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic8.nipic.com%2F20100722%2F11494_104536084657_2.jpg&refer=http%3A%2F%2Fpic8.nipic.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1650548796&t=7fd6430013f61e5e198cba77b0797724";
+      const url2 =
+        "https://img0.baidu.com/it/u=2381213954,401093073&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281";
+
+      loadImage(url1)
+        .then((img1) => {
+          console.log("图片1宽度", img1.width);
+          return img1;
+        })
+        .then((img1) => {
+          console.log("图片1高度", img1.height);
+          return loadImage(url2);
+        })
+        .then((img2) => {
+          console.log("图片2宽度", img2.width);
+          return img2;
+        })
+        .then((img2) => {
+          console.log("图片2高度", img2.height);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    </script>
+  </body>
+</html>
