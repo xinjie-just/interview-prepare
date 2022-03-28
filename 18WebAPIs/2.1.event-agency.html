@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>事件代理</title>
+  </head>
+  <body>
+    <ul class="list" id="list">
+      <li>li1</li>
+      <li>li2</li>
+      <li>li3</li>
+      <li>li4</li>
+      <li>li5</li>
+      <li>li6</li>
+      <li>li7</li>
+    </ul>
+    <script>
+      const list = document.getElementById("list");
+      list.addEventListener("click", (event) => {
+        const target = event.target;
+        console.log(target.innerHTML);
+      });
+    </script>
+  </body>
+</html>

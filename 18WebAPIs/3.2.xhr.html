@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>手写一个 AJAX 请求</title>
+  </head>
+  <body>
+    <h1>手写一个 AJAX 请求</h1>
+    <script>
+      //   GET 请求
+      const xhr = new XMLHttpRequest();
+      xhr.open("GET", "./3.1data1.json", false); // false 表示异步
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            console.log(xhr.responseText);
+          } else {
+            if (xhr.status === 404) {
+              console.log("404 not found"); // 访问路径写错了，该是 './3.1data.json'
+            }
+          }
+        }
+      };
+
+      xhr.send(null);
+
+      // POST 请求
+      //   const xhr = XMLHttpRequest();
+      //   xhr.open("POST", "login", false);
+      //   xhr.onreadystatechange = function () {
+      //     if (xhr.readyState === 4) {
+      //       if (xhr.status === 200) {
+      //         console.log(xhr.responseText);
+      //       } else {
+      //         console.log("出错了");
+      //       }
+      //     }
+      //   };
+      //   const postData = {
+      //     username: "zhangsan",
+      //     password: "xxx",
+      //   };
+
+      //   xhr.send(JSON.stringify(postData));
+    </script>
+  </body>
+</html>

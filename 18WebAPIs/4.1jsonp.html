@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSONP实现跨域</title>
+  </head>
+  <body>
+    <script>
+      window.customFn = () => {
+        console.log("abc");
+      };
+    </script>
+    <script src="http://127.0.0.1:5500/18WebAPIs/4.2jsonp.js"></script>
+    <!-- 上面获取的 4.2jsonp.js 直接返回了一段代码 customFn() 执行客户端定义的代码，于是只要请求成功了，就会打印 -->
+  </body>
+</html>
