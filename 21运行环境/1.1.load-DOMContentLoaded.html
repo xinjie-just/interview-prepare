@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>load-DOMContentLoaded</title>
+  </head>
+  <body>
+    <h1>验证Load-DOMContentLoaded</h1>
+    <img
+      id="img"
+      src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg9.51tietu.net%2Fpic%2F2019-091210%2Fgwbuw31a5fmgwbuw31a5fm.jpg&refer=http%3A%2F%2Fimg9.51tietu.net&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1651123131&t=d54916ae9736a3906da22841340394f5"
+      alt="大图"
+    />
+    <script>
+      const img = document.getElementById("img");
+      img.onload = () => {
+        console.log("image loaded");
+      };
+      window.onload = () => {
+        console.log("window loaded");
+      };
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("DOMContentLoaded");
+      });
+    </script>
+  </body>
+</html>
