@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>debounce</title>
+  </head>
+  <body>
+    <h1>防抖</h1>
+    <input type="text" id="input" />
+    <script>
+      const input = document.getElementById("input");
+      //   let timer = null;
+      //   input.addEventListener("keyup", () => {
+      //     // 当连续两次及以上操作时，第一次操作 timer 没值，将会赋值一个定时器返回值，将在 500 ms 后执行逻辑。
+      //     // 如果 500 ms 内有了第二次操作，这时候 timer 有值（是第一次赋值的），定时器将会被清除，第一步将要被执行的逻辑停止执行。
+      //     // 第二次 timer 将会被重新附上值，如果 500ms 内没有新的操作，就将执行内部逻辑。并把 timer 重置。下一次将会重新计算 timer 有没有值，重复上面步骤。
+      //     if (timer) {
+      //       clearTimeout(timer);
+      //     }
+      //     timer = setTimeout(() => {
+      //       console.log(input.value);
+      //       timer = null; // 执行完了之后需要重置 timer 的值，保证后面的操作不受影响
+      //     }, 500);
+      //   });
+      function debounce(fn, delay = 500) {
+        // timer 处于闭包中
+        let timer = null;
+
+        // 函数作为返回值，形成了闭包
+        return function () {
+          if (timer) {
+            clearTimeout(timer);
+          }
+          timer = setTimeout(() => {
+            // fn(); // 这样写接受不到 fn 函数中传入的参数
+            fn.apply(this, arguments);
+            timer = null;
+          }, delay);
+        };
+      }
+      input.addEventListener(
+        "keyup",
+        debounce((e) => {
+          // 第一个参数（函数）如果有参数，这个参数将会传给 debounce 返回的函数
+          console.log(e.target);
+          console.log(input.value);
+        }, 1000)
+      );
+    </script>
+  </body>
+</html>

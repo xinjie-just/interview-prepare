@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>throttle</title>
+    <style>
+      .elem {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #000;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="elem" class="elem" draggable="true">可拖拽元素</div>
+    <script>
+      const elem = document.getElementById("elem");
+      //   elem.addEventListener("drag", (e) => {
+      //     console.log(e.offsetX, e.offsetY);
+      //   });
+
+      let timer = null;
+      elem.addEventListener("drag", (e) => {
+        // 拖动第一 px 以外情况，400ms 以内的其他拖动，就不管（这时候 timer 已经有值了）
+        // 400ms 以后，就会执行逻辑，并把 timer 重置，并循环上一次逻辑（又等待 400ms 再执行，并把 timer 重置）
+        if (timer) {
+          return;
+        }
+        timer = setTimeout(() => {
+          console.log(e.offsetX, e.offsetY);
+          timer = null;
+        }, 400);
+      });
+    </script>
+  </body>
+</html>
