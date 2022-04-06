@@ -22,18 +22,42 @@
       //     console.log(e.offsetX, e.offsetY);
       //   });
 
-      let timer = null;
-      elem.addEventListener("drag", (e) => {
-        // 拖动第一 px 以外情况，400ms 以内的其他拖动，就不管（这时候 timer 已经有值了）
-        // 400ms 以后，就会执行逻辑，并把 timer 重置，并循环上一次逻辑（又等待 400ms 再执行，并把 timer 重置）
-        if (timer) {
-          return;
-        }
-        timer = setTimeout(() => {
+      // let timer = null;
+      // elem.addEventListener("drag", (e) => {
+      //   // 拖动第一 px 以外情况，400ms 以内的其他拖动，就不管（这时候 timer 已经有值了）
+      //   // 400ms 以后，就会执行逻辑，并把 timer 重置，并循环上一次逻辑（又等待 400ms 再执行，并把 timer 重置）
+      //   if (timer) {
+      //     return;
+      //   }
+      //   timer = setTimeout(() => {
+      //     console.log(e.offsetX, e.offsetY);
+      //     timer = null;
+      //   }, 400);
+      // });
+
+      function throttle(fn, delay = 500) {
+        // timer 处于闭包中
+        let timer = null;
+
+        // 函数作为返回值，形成了闭包
+        return function () {
+          if (timer) {
+            return;
+          }
+          timer = setTimeout(() => {
+            // fn(); // 这样写接受不到 fn 函数中传入的参数
+            fn.apply(this, arguments);
+            timer = null;
+          }, delay);
+        };
+      }
+      elem.addEventListener(
+        "drag",
+        throttle((e) => {
+          // 第一个参数（函数）如果有参数，这个参数将会传给 throttle 返回的函数
           console.log(e.offsetX, e.offsetY);
-          timer = null;
-        }, 400);
-      });
+        }, 200)
+      );
     </script>
   </body>
 </html>
