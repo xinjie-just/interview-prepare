@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>图片懒加载</title>
+    <style>
+      .animal {
+        border: 1px solid #999;
+        border-radius: 4px;
+        margin-bottom: 32px;
+      }
+      .animal p {
+        margin-bottom: 16px;
+      }
+      .animal img {
+        display: block;
+        width: 300px;
+        height: 200px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="animal">
+        <p>斑马</p>
+        <img
+          src="./images/loading.gif"
+          alt="斑马"
+          data-src="./images/动物-斑马.webp"
+        />
+      </div>
+      <div class="animal">
+        <p>海豚</p>
+        <img
+          src="./images/loading.gif"
+          alt="海豚"
+          data-src="./images/动物-海豚.webp"
+        />
+      </div>
+      <div class="animal">
+        <p>老虎</p>
+        <img
+          src="./images/loading.gif"
+          alt="老虎"
+          data-src="./images/动物-老虎.webp"
+        />
+      </div>
+      <div class="animal">
+        <p>狮子</p>
+        <img
+          src="./images/loading.gif"
+          alt="狮子"
+          data-src="./images/动物-狮子.webp"
+        />
+      </div>
+      <div class="animal">
+        <p>犀牛</p>
+        <img
+          src="./images/loading.gif"
+          alt="犀牛"
+          data-src="./images/动物-犀牛.webp"
+        />
+      </div>
+      <div class="animal">
+        <p>熊</p>
+        <img
+          src="./images/loading.gif"
+          alt="熊"
+          data-src="./images/动物-熊.webp"
+        />
+      </div>
+      <div class="animal">
+        <p>熊猫</p>
+        <img
+          src="./images/loading.gif"
+          alt="熊猫"
+          data-src="./images/动物-熊猫.webp"
+        />
+      </div>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script>
+      loadImg(); // 初始化时执行一次，让初始阶段就在可视区域内的图片显示出来
+
+      // 在滚动中使用节流措施，避免造成性能开销大
+      window.addEventListener(
+        "scroll",
+        _.throttle(() => {
+          loadImg();
+        }, 200)
+      );
+
+      function loadImg() {
+        const images = document.querySelectorAll("img[data-src]");
+        if (!images.length) return;
+        images.forEach((image) => {
+          const rect = image.getBoundingClientRect();
+          if (rect.top < window.innerHeight) {
+            console.log("image", image.src);
+            image.src = image.dataset.src;
+
+            // 给 src 赋值后，移除 img 标签的 data-src 属性，上面的获取 img[data-src] 集合时就获取不到已经被赋值过个图片了，避免多余重复获取
+            image.removeAttribute("data-src");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
