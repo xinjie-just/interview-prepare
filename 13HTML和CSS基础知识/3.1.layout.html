@@ -13,12 +13,13 @@
         border: 1px solid #000;
         margin: 10px;
       } */
-      /* p {
+      p {
         font-size: 16px;
         line-height: 1;
-        margin-top: -10px;
+        /*margin-top: -10px;*/ /*如果有正有负，表示两者相加，后面元素 margin-top 为负，表示元素向上移动 */
+        /* margin-top: 10px; */ /*如果全部是正数，重叠之后取最大的那个值*/
         margin-bottom: 15px;
-      } */
+      }
       /* .header {
         background-color: #dadada;
         color: #000;
@@ -52,7 +53,7 @@
         color: #000;
         width: 150px;
       } */
-      .container {
+      /* .container {
         padding: 10px;
         border: 1px solid #999;
         border-radius: 10px;
@@ -72,7 +73,7 @@
       }
       .item:nth-of-type(3) {
         align-self: flex-end;
-      }
+      } */
     </style>
   </head>
   <body>
@@ -80,11 +81,11 @@
 
     <!-- <div class="div2">垂直方向 margin 重叠</div> -->
     <!-- 在垂直方向上，margin 会重叠，如果都为正数取最大那个，如果都为负数取绝对值最大的负数，如果一正一负者正负相加。且空标签的高度也会不计算。 -->
-    <!-- <p>p1</p>
+    <p>p1</p>
     <p></p>
     <p></p>
     <p></p>
-    <p>p2</p> -->
+    <p>p2</p>
 
     <!-- <header class="header">header</header>
     <main class="main">
@@ -94,12 +95,12 @@
     </main>
     <footer class="footer">footer</footer> -->
 
-    <h2>flex布局实现3点骰子</h2>
+    <!-- <h2>flex布局实现3点骰子</h2>
     <div class="container">
       <div class="item"></div>
       <div class="item"></div>
       <div class="item"></div>
-    </div>
+    </div> -->
 
     <script>
       // offsetWidth = （内容宽 + padding-left + padding-right + border-left-width + border-right-width）

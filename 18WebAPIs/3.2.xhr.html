@@ -11,7 +11,7 @@
     <script>
       //   GET 请求
       const xhr = new XMLHttpRequest();
-      xhr.open("GET", "./3.1data1.json", false); // false 表示异步
+      xhr.open("GET", "./3.1data1.json", true); // true 表示异步
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
@@ -28,7 +28,7 @@
 
       // POST 请求
       //   const xhr = XMLHttpRequest();
-      //   xhr.open("POST", "login", false);
+      //   xhr.open("POST", "login", true);
       //   xhr.onreadystatechange = function () {
       //     if (xhr.readyState === 4) {
       //       if (xhr.status === 200) {
