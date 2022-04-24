@@ -42,9 +42,34 @@
 // a = [1];
 // a();  // 报错 a is not a function
 // a.toUpperCase();
-var a = 1;
-a = "1";
-a = true;
-a = [1];
-a(); // 报错 a is not a function
-a.toUpperCase();
+// let a: unknown = 1;
+// a = "1";
+// a = true;
+// a = [1];
+// a(); // 报错 a is not a function
+// a.toUpperCase();
+// void undefined 和 never
+// function print1(): void {
+//   console.log("a");
+// }
+// function print2(): undefined {
+//   console.log("a");
+//   return;
+// }
+// print1();
+// print2();
+// 类型断言
+// let s: any;
+// s = "string";
+// s.endWith("c"); // 这时 s 还是 any 类型，调字符串的 endWith() 方法时，没有提示
+// (<string>s).endsWith("c"); // 在类型前面加上 <string> 可以指定 s 的类型是 string。
+// (s as string).endsWith("c"); // 也可以通过 as 关键字来指定 s 的类型是 string。
+function log(value1, value2) {
+    return value1 + value2;
+}
+console.log(log(1));
+function log2(value1, value2) {
+    if (value2 === void 0) { value2 = 2; }
+    return value1 + value2;
+}
+console.log(log2(1));
