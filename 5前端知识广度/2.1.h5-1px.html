@@ -6,25 +6,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>h5页面1px边框解决方法</title>
     <style>
-      .border {
+      /* 一条边 */
+      .one-border {
         position: relative;
+        height: 40px;
       }
-      .border::after {
+      .one-border::after {
         position: absolute;
         width: 100%;
-        height: 1px;
         content: "";
         top: 0;
         left: 0;
-        background-color: #000;
-        transform: scaleY(0.5);
-        border-radius: 5px;
-        /*border: 1px solid #d9d9d9;*/
-        box-shadow: 0 0 0 0.5px #000;
+        border-top: 1px solid #000;
+
+        /* 下面兼容非 retina 屏，原尺寸，不放大缩小 */
+        transform: scaleY(1);
+        box-shadow: 0 0 0 1px #000;
+      }
+      @media only screen and (-webkit-min-device-pixel-ratio: 3) {
+        .one-border::after {
+          transform: scaleY(0.33333333); /* 这里缩小为 1/3 */
+          box-shadow: 0 0 0 0.33333333px #000; /* 这里缩小为 1/3 */
+        }
+      }
+
+      @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+        .one-border::after {
+          transform: scaleY(0.5); /* 这里缩小为 1/2 */
+          box-shadow: 0 0 0 0.5px #000; /* 这里缩小为 1/2 */
+        }
+      }
+
+      /* 四条边 */
+      .four-border {
+        position: relative;
+        height: 48px;
+        border-radius: 8px;
+      }
+      .four-border::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        transform-origin: left top;
+
+        /* 下面兼容非 retina 屏，原尺寸，不放大缩小 */
+        width: 100%;
+        height: 100%;
+        transform: scale(1);
+        box-shadow: 0 0 0 1px #000;
+        border-radius: 8px;
+      }
+      
+      @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+        .four-border::after {
+          width: 200%; /* 这里放大 2 倍 */
+          height: 200%; /* 这里放大 2 倍 */
+          transform: scale(0.5); /* 这里缩小为 1/2 */
+          box-shadow: 0 0 0 0.5px #000; /* 这里缩小为 1/2 */
+          border-radius: 16px; /* 这里放大 2 倍 */
+        }
+      }
+      
+      @media only screen and (-webkit-min-device-pixel-ratio: 3) {
+        .four-border::after {
+          width: 300%; /* 这里放大 3 倍 */
+          height: 300%; /* 这里放大 3 倍 */
+          transform: scale(0.33333333); /* 这里缩小为 1/3 */
+          box-shadow: 0 0 0 0.33333333px #000; /* 这里缩小为 1/3 */
+          border-radius: 24px; /* 这里放大 3 倍 */
+        }
       }
     </style>
   </head>
   <body>
-    <div class="border"></div>
+    <div class="one-border"></div> <!-- 一条边 -->
+    <div class="four-borders"></div> <!-- 四条边 -->
   </body>
 </html>
