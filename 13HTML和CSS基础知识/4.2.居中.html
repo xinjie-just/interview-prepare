@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>position</title>
+    <style>
+      .container2 {
+        width: 400px;
+        height: 300px;
+        background-color: #fafafa;
+        border-radius: 10px;
+        position: relative;
+      }
+      .container2 .child2 {
+        position: absolute;
+        top: 100px;
+        right: 100px;
+        bottom: 100px;
+        left: 100px;        
+        background-color: #999;
+        width: 100px;
+        height: 100px;
+        margin: auto; /* 绝对定位布局，加上 top、right、bottom、left 和 margin: auto 可以实现水平和垂直居中 */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>定位</h1>
+    <div class="container2">
+      <div class="child2">子元素</div>
+    </div>
+  </body>
+</html>
