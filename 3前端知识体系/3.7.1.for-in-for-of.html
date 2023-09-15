@@ -11,77 +11,94 @@
     <p>for-of</p>
     <script>
       // 用于字符串
-      //   let str1 = "abcd";
-      //   // for in 获取 key
-      //   //   for (const key in str1) {
-      //   //     console.log(key); // 0 1 2 3
-      //   //   }
-      //   // for of 获取 value
-      //   for (const value of str1) {
-      //     console.log(value); // a b c d
-      //   }
+        let str1 = "abcd";
+        // for in 获取 key
+          // for (const key in str1) {
+          //   console.log(key); // 0 1 2 3
+          // }
+
+        // for of 获取 value
+        // for (const value of str1) {
+        //   console.log(value); // a b c d
+        // }
+
 
       // 用于数组
-      //   let arr1 = ["a", "b", "c", "d"];
-      //   // for in 获取 key
-      //   //   for (const key in arr1) {
-      //   //     console.log(key);  // 0 1 2 3
-      //   //   }
-      //   for (const value of arr1) {
-      //     console.log(value); // a b c d
-      //   }
+      // let arr1 = ["a", "b", "c", "d"];
+        // for in 获取 key
+        // for (const key in arr1) {
+        //   console.log(key);  // 0 1 2 3
+        // }
+
+        // for of 获取 value
+        // for (const value of arr1) {
+        //   console.log(value); // a b c d
+        // }
+
 
       // 用于对象
-      //   let obj1 = { a: 1, b: 2, c: 3 };
-      //   // for in 可以获取对象的 key
-      //   //   for (let key in obj1) {
-      //   //     console.log(key); // a  b  c
-      //   //   }
-      //   // for of 会报错
-      //   //   for (const value of obj1) {
-      //   //     console.log(value); // TypeError: obj1 is not iterable
-      //   //   }
-      //   console.log(Object.getOwnPropertyDescriptor(obj1, "a"));
-      //   // {
-      //   //   configurable: true,
-      //   //   enumerable: true,  // obj1.a 是可枚举的
-      //   //   value: 1,
-      //   //   writable: true
-      //   // }
+        // let obj1 = { a: 1, b: 2, c: 3 };
+        // for in 可以获取对象的 key
+          // for (let key in obj1) {
+          //   console.log(key); // a  b  c
+          // }
+
+        // for of 会报错
+        //   for (const value of obj1) {
+        //     console.log(value); // TypeError: obj1 is not iterable
+        //   }
+
+        // console.log(Object.getOwnPropertyDescriptor(obj1, "a"));
+        // console.log(Object.getOwnPropertyDescriptor(obj1, "a").enumerable);
+        // console.log(Object.getOwnPropertyDescriptor(obj1, "a").configurable);
+        // console.log(Object.getOwnPropertyDescriptor(obj1, "a").writable);
+
+        // {
+        //   configurable: true,
+        //   enumerable: true,  // obj1.a 是可枚举的
+        //   value: 1,
+        //   writable: true
+        // }
+
 
       // 用于 Set
       // for in 不能够用于 Set 数据结构
-      //   const s1 = new Set([100, 200, 300]);
-      //   //   for (const key in s1) {
-      //   //     console.log(key); // 没有都没有打印
-      //   //   }
+        // const s1 = new Set([100, 200, 300]);
+          // for (const key in s1) {
+          //   console.log(key); // 没有都没有打印
+          // }
+
       // for of 可以用于 Set 数据结构，获取 value
-      //   for (const value of s1) {
-      //     console.log(value); // 100 200 300
-      //   }
+        // for (const value of s1) {
+        //   console.log(value); // 100 200 300
+        // }
+
 
       // 用于 Map
       // for in 不能用于 Map 数据结构
-      //   let m1 = new Map([
-      //     ["a", 100],
-      //     ["b", 200],
-      //     ["c", 300],
-      //   ]);
-      //   //   for (const key in m1) {
-      //   //     console.log(key);
-      //   //   }
-      //   for (let value of m1) {
-      //     console.log(value);
-      //   }
+        // let m1 = new Map([
+        //   ["a", 100],
+        //   ["b", 200],
+        //   ["c", 300],
+        // ]);
+          // for (const key in m1) {
+          //   console.log(key); // 没有都没有打印
+          // }
+
+      // for of 可以用于 Map 数据结构，获取 value
+        // for (let value of m1) {
+        //   console.log(value); // ['a', 100]  ['b', 200]  ['c', 300]
+        // }
+
 
       // 用于 NodeList
-      const pList = document.getElementsByTagName("p");
-      for (let key in pList) {
-        console.log(key); // 0 1 length item namedItem
-      }
-      //   for (const value of pList) {
-      //     console.log(value); // for-in   for-of
-      //   }
+      // const pList = document.getElementsByTagName("p");
+      // for (let key in pList) {
+      //   console.log(key); // 0 1 length item namedItem
+      // }
+        // for (const value of pList) {
+        //   console.log(value); // for-in   for-of
+        // }
     </script>
   </body>
 </html>

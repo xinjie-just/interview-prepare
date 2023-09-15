@@ -25,10 +25,10 @@
         // console.log(res3);
 
         const list = [res1, res2, res3];
-        // Promise.all(list).then((res) => console.log(res)); // [100, 200, 300]
+        Promise.all(list).then((res) => console.log(res)); // [100, 200, 300]
 
         for await (let res of list) {
-          console.log(res); // 遍历一个 promise
+          console.log(res); // 遍历一个 promise  100 200 300
         }
       })();
     </script>

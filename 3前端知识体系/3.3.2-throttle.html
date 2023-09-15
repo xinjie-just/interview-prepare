@@ -24,6 +24,8 @@
           }
 
           timer = setTimeout(() => {
+            console.log("this", this); // this 指代 #drag DOM 对象
+            console.log("arguments", arguments); // arguments 指代使用 throttle 函数时，传入的 e: DragEvent
             fn.apply(this, arguments);
             timer = 0;
           }, delay);
@@ -35,7 +37,7 @@
         "drag",
         throttle((e) => {
           console.log("位置 X: ", e.offsetX, ", Y:", e.offsetY);
-        }, 200)
+        }, 500)
       );
     </script>
   </body>
