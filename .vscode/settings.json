@@ -1,11 +1,12 @@
 {
   "cSpell.words": [
+    "clearfix",
+    "instanceof",
+    "keyframes",
     "logn",
     "typeof",
     "unshift",
     "vmax",
-    "vmin",    
-    "clearfix",
-    "keyframes"
+    "vmin"
   ]
 }
