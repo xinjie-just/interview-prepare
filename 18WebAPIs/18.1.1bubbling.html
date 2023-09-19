@@ -9,13 +9,18 @@
       .container1 {
         width: 300px;
         height: 300px;
-        border: 1px solid #f00;
+        border: 1px solid #aaa;
+      }
+      .btn1 {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #666;
       }
     </style>
   </head>
   <body>
     <div id="container1" class="container1">
-      <button id="btn1">btn1</button>
+      <button id="btn1" class="btn1">btn1</button>
     </div>
     <script>
       const body = document.body;
@@ -24,16 +29,18 @@
         (event) => {
           console.log("body");
           console.log("event-target", event.target);
+          console.log("event-currentTarget", event.currentTarget);
         },
-        true // true 表示捕获，默认值是 false，写 false 或不写该参数表示冒泡
+        false // true 表示捕获，默认值是 false，写 false 或不写该参数表示冒泡
       );
       const container1 = document.getElementById("container1");
       container1.addEventListener(
         "click",
         (event) => {
-          // event.stopPropagation(); // 阻止事件冒泡
+          event.stopPropagation(); // 阻止事件冒泡
           console.log("container1");
-          console.log("event-target", event.target);
+          console.log("event-target", event.target); // 表示执行事件的目标，如果点击 btn1 冒泡到这里输出的， target 就是 btn1
+          console.log("event-currentTarget", event.currentTarget); // currentTarget 永远是当前对象
         },
         false
       );
@@ -43,8 +50,9 @@
         (event) => {
           console.log("btn1");
           console.log("event-target", event.target);
+          console.log("event-currentTarget", event.currentTarget);
         },
-        true
+        false
       );
     </script>
   </body>

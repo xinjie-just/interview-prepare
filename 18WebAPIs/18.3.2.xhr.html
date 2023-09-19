@@ -11,14 +11,14 @@
     <script>
       //   GET 请求
       const xhr = new XMLHttpRequest();
-      xhr.open("GET", "./3.1data1.json", true); // true 表示异步
+      xhr.open("GET", "./18.3.1data.json", true); // true 表示异步
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             console.log(xhr.responseText);
           } else {
             if (xhr.status === 404) {
-              console.log("404 not found"); // 访问路径写错了，该是 './3.1data.json'
+              console.log("404 not found"); // 访问路径写错了，该是 './18.3.1data.json'
             }
           }
         }
