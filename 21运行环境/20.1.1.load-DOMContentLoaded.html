@@ -16,13 +16,13 @@
     <script>
       const img = document.getElementById("img");
       img.onload = () => {
-        console.log("image loaded");
+        console.log("image loaded"); // 2
       };
       window.onload = () => {
-        console.log("window loaded");
+        console.log("window loaded"); // 3
       };
       document.addEventListener("DOMContentLoaded", () => {
-        console.log("DOMContentLoaded");
+        console.log("DOMContentLoaded");  // 1
       });
     </script>
   </body>
