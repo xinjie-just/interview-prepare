@@ -11,10 +11,17 @@
       window.addEventListener(
         "error",
         function (event) {
-          console.log("捕获event", event);
+          console.error("捕获event", event);
         },
         true
       );
+      // window.onerror = function(message, source, colNum, rowNum, error) {
+      //   console.log("message", message);
+      //   console.log("source", source);
+      //   console.log("colNum", colNum);
+      //   console.log("rowNum", rowNum);
+      //   console.log("error", error);
+      // }
     </script>
     <script src="https://www.baidu.com/xcvbnmkjhgf.html"></script>
   </body>
