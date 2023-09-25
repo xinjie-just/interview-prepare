@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>找出数组中和为 n 的两个数</title>
+</head>
+<body>
+  <script>
+    // 双指针加一层循环
+    function addTwoNumber(arr, number) {
+      // 一些边界判断
+      if (!Array.isArray(arr)) {
+        console.error("函数第一个参数必须是数组");
+        return;
+      }
+      if (!typeof number === 'number') {
+        console.error("函数第二个参数必须是数值");
+        return;
+      }
+
+      let len = arr.length;
+      if (len < 2) {
+        console.error("数组的长度必须不小于 2");
+        return;
+      }
+
+      let res = []; // 找到的两个数的索引
+      let startIndex = 0;
+      let endIndex = len - 1;
+      
+      while(startIndex < endIndex) {
+        let startValue = arr[startIndex];
+        let endValue = arr[endIndex];
+        let sum = startValue + endValue;
+        if (sum < n) {
+          startIndex += 1;
+        } else if (sum === n) {
+          res = [startIndex, endIndex];
+          break;
+        } else {
+          endIndex -= 1;
+        }
+      }
+      return res; // 如果 res 是空数组，证明没找到
+    }
+  </script>
+</body>
+</html>

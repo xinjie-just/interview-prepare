@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bracket-matching</title>
+</head>
+<body>
+  <script>
+    // 括号匹配：如果是 a{b[c(d)e]f}g 就匹配；如果是 a{b[c(d)ef}g 就不匹配，因为缺少 ']'
+    // 解题思路，如果遇到左括号 '{[(' 中的一个就入栈，如果遇到右括号 '}])' 中的一个就和栈中最后一个成员作比较，如果能配对，就让栈中最后一个成员出栈，否则整个字符串不匹配
+    
+    // 是否是配对的括号
+    function isSameType(leftChar, rightChar) {
+      if ((leftChar === '{' && rightChar === '}')
+        || (leftChar === '[' && rightChar === ']')
+        || (leftChar === '(' && rightChar === ')')) {
+        return true;
+      }
+      return false;
+    }
+
+    function matching(str) {
+      if (!typeof str === 'string') {
+        console.error("必须是一个字符串");
+      }
+      let len = str.length;
+      if (!len) {
+        return true;
+      }
+
+      let arr = [];
+      let leftChar = '{[(';
+      let rightChar = ')]}';
+      for (let i = 0; i < len; i++) {
+        let char = str[i];
+        if (leftChar.includes(char)) {
+          arr.push(char);
+        } else if (rightChar.includes(char)) {
+          if (isSameType(arr.at(-1), char)) {
+            arr.pop();
+          } else {
+            return false;
+          }
+        }
+      }
+
+      return !arr.length;
+    }
+  </script>
+</body>
+</html>
