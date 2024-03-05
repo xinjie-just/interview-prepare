@@ -20,7 +20,9 @@
           res = {};
         }
         for (let key in obj) {
+          // 避免出现原型中的 key
           if (obj.hasOwnProperty(key)) {
+            // 递归
             res[key] = deepClone(obj[key]);
           }
         }
