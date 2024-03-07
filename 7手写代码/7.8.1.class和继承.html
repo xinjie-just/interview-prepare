@@ -30,17 +30,31 @@
         }
       }
 
-      const lisi = new Student("李四", 18, 0001);
-      lisi.eat();
-      lisi.getNumber();
-      console.log(lisi.age);
-      console.log("lisi.hasOwnProperty('name')", lisi.hasOwnProperty("name")); // true
-      console.log("lisi.hasOwnProperty('eat')", lisi.hasOwnProperty("eat")); // false
-      console.log("eat in lisi", "eat" in lisi); // true, in 操作符包含了对象原型上的属性 / 方法
-      console.log(
-        "Student.prototype.__proto__ === People.prototype",
-        Student.prototype.__proto__ === People.prototype
-      ); // true
+      class Teacher extends People {
+        constructor(name, age, major){
+          super(name, age);
+          this.major = major;
+        }
+        teach() {
+          console.log(`${this.name} 教授 ${this.major}`)
+        }
+      }
+
+      // const lisi = new Student("李四", 18, 0001);
+      // lisi.eat();
+      // lisi.getNumber();
+      // console.log(lisi.age);
+      // console.log("lisi.hasOwnProperty('name')", lisi.hasOwnProperty("name")); // true
+      // console.log("lisi.hasOwnProperty('eat')", lisi.hasOwnProperty("eat")); // false
+      // console.log("eat in lisi", "eat" in lisi); // true, in 操作符包含了对象原型上的属性 / 方法
+      // console.log(
+      //   "Student.prototype.__proto__ === People.prototype",
+      //   Student.prototype.__proto__ === People.prototype
+      // ); // true
+      const ma = new Teacher('马老师', 45, '数学');
+      console.log(ma.name);
+      console.log(ma.age);
+      console.log(ma.teach());
     </script>
   </body>
 </html>
