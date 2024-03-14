@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <p id="drag1" draggable="true" ondragstart="drag(event)" width="336" height="69">拖动我!</p>
+    <div id="div1" ondragover="allowDrop(event)" ondrop="drop(event)" style="width:350px;height:70px;padding:10px;border:1px solid black;">
+    把上面的段落放到这里
+    </div>
+
+    <script>
+        // function allowDrop(ev) {
+        //     ev.preventDefault();
+        // }
+
+        // function drag(ev) {
+        //     ev.dataTransfer.setData("text", ev.target.id);
+        // }
+
+        // function drop(ev) {
+        //     ev.preventDefault();
+        //     var data = ev.dataTransfer.getData("text");
+        //     ev.target.appendChild(document.getElementById(data));
+        // }
+
+        </script>
+    -->
+
+    <p id="drag1" draggable="true" width="336" height="69">拖动我!</p>
+    <div id="div1" style="width:350px;height:70px;padding:10px;border:1px solid black;">
+    把上面的段落放到这里
+    </div>
+
+    <script>        
+        let drag1 = document.getElementById("drag1");
+        let div1 = document.getElementById("div1");
+
+        drag1.addEventListener("dragstart", (ev) => {
+            console.log("drag1 开始拖动了，ev.target 是：", ev.target);
+        });
+
+        drag1.addEventListener("dragend", (ev) => {
+            console.log("drag1 拖动了结束了，ev.rect 是：", ev.target.getBoundingClientRect());
+        });
+
+        drag1.addEventListener("drag", (ev) => {
+            console.log("drag");
+        });
+
+        div1.addEventListener("dragenter", () => {
+            console.log("dragenter");
+        });
+
+        div1.addEventListener("dragenter", () => {
+            console.log("dragenter");
+        });
+
+        div1.addEventListener("dragleave", () => {
+            console.log("dragleave");
+        });
+
+        div1.addEventListener("dragover", () => {
+            console.log("dragover");
+        });
+        
+    </script>
+        
+</body>
+</html>
