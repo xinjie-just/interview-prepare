@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>requestAnimationFrame-Request Animation Frame</title>
+    <style>
+        .container {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container"></div>
+    <script>
+        // 3s 将 .container 的宽度从 100px 变成 640px，180px/s
+        let container = document.getElementById("container");
+        let currentWidth = 100;
+        const MAX_WIDTH = 640;
+        animation();
+        function animation() {
+            if (currentWidth < MAX_WIDTH) {
+                // 使用 setTimeout 方式
+                // setTimeout(() => {
+                //     currentWidth += 3;
+                //     container.style.width = currentWidth + 'px';
+                //     animation();
+                // }, 16.7);
+                
+                // 使用 requestAnimationFrame 方式
+                window.requestAnimationFrame(() => {
+                    currentWidth += 3;
+                    container.style.width = currentWidth + 'px';
+                    animation();
+                });
+            }
+        }
+    </script>
+</body>
+</html>
